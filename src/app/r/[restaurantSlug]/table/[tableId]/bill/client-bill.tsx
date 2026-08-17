@@ -72,7 +72,7 @@ export default function ClientBill({
       <div className="flex flex-col items-center justify-center h-screen bg-background text-center p-6 space-y-4 pt-20">
         <ReceiptText className="w-12 h-12 text-surface-border mb-2" />
         <h2 className="text-xl font-semibold tracking-tight text-foreground">No active orders</h2>
-        <p className="text-secondary text-sm">You haven't ordered anything yet.</p>
+        <p className="text-secondary text-sm">You haven&apos;t ordered anything yet.</p>
         <Link href={`/r/${restaurantSlug}/table/${tableNumber}`}>
           <button className="mt-8 bg-primary text-primary-foreground px-6 py-2.5 text-sm rounded-lg font-medium shadow-sm hover:opacity-90 transition-opacity">
             Browse Menu

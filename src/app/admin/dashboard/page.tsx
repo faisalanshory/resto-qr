@@ -18,7 +18,7 @@ export default function AdminDashboardPage() {
     <div className="p-8 h-full flex flex-col bg-background overflow-y-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Overview</h1>
-        <p className="text-secondary mt-1">Monitor your restaurant's live performance.</p>
+        <p className="text-secondary mt-1">Monitor your restaurant&apos;s live performance.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -30,7 +30,7 @@ export default function AdminDashboardPage() {
             </div>
             <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded-lg">Today</span>
           </div>
-          <p className="text-sm font-semibold text-secondary uppercase tracking-wider mb-1">Today's Revenue</p>
+          <p className="text-sm font-semibold text-secondary uppercase tracking-wider mb-1">Today&apos;s Revenue</p>
           <h2 className="text-3xl font-bold text-foreground">{formatRupiah(stats.todayRevenue)}</h2>
           <p className="text-xs text-secondary mt-4 pt-4 border-t border-surface-border">
             Total All Time: <span className="font-bold text-foreground">{formatRupiah(stats.totalRevenue)}</span>

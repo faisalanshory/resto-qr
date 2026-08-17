@@ -41,7 +41,7 @@ export default function LandingPage() {
           </p>
           
           <div className="space-y-3 mt-auto">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Select a Table to "Scan"</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Select a Table to &quot;Scan&quot;</h3>
             <button 
               onClick={() => handleCustomerScan("01")}
               className="w-full flex items-center justify-between p-4 bg-background border border-surface-border rounded-xl hover:bg-surface-variant hover:border-primary/50 transition-all group"

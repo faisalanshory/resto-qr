@@ -126,7 +126,7 @@ export default function ClientPayment({
           <CheckCircle2 className="w-10 h-10" />
         </div>
         <h2 className="text-2xl font-bold text-foreground tracking-tight mb-2">Payment Successful!</h2>
-        <p className="text-secondary text-sm mb-8">Thank you for your order. We're preparing your food.</p>
+        <p className="text-secondary text-sm mb-8">Thank you for your order. We&apos;re preparing your food.</p>
         <button 
           onClick={() => router.push(`/r/${restaurantSlug}/table/${tableNumber}/bill`)}
           className="w-full max-w-sm bg-primary text-primary-foreground py-3.5 rounded-xl font-bold hover:opacity-90 transition-opacity"
