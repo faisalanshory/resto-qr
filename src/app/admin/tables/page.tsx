@@ -75,11 +75,11 @@ export default function AdminTablesPage() {
     }
   };
 
-  if (!tables) return <div className="p-8 text-secondary">Loading tables...</div>;
+  if (!tables) return <div className="p-4 sm:p-8 text-secondary">Loading tables...</div>;
 
   return (
-    <div className="p-8 h-full flex flex-col bg-background">
-      <div className="flex justify-between items-end mb-8">
+    <div className="p-4 sm:p-8 h-full flex flex-col bg-background">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">Table Management</h1>
           <p className="text-secondary mt-1">Monitor active tables and manage customer sessions.</p>

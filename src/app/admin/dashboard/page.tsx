@@ -12,10 +12,10 @@ export default function AdminDashboardPage() {
     refreshInterval: 10000,
   });
 
-  if (!stats) return <div className="p-8 text-secondary">Loading dashboard...</div>;
+  if (!stats) return <div className="p-4 sm:p-8 text-secondary">Loading dashboard...</div>;
 
   return (
-    <div className="p-8 h-full flex flex-col bg-background overflow-y-auto">
+    <div className="p-4 sm:p-8 h-full flex flex-col bg-background overflow-y-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Overview</h1>
         <p className="text-secondary mt-1">Monitor your restaurant&apos;s live performance.</p>

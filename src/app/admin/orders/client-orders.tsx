@@ -59,7 +59,7 @@ export default function ClientOrders() {
   };
 
   return (
-    <div className="p-8 space-y-8 bg-background min-h-[calc(100vh-4rem)]">
+    <div className="p-4 sm:p-8 space-y-8 bg-background min-h-[calc(100vh-4rem)] overflow-x-hidden">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">Order History</h1>

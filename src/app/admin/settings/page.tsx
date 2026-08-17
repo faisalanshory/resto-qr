@@ -59,10 +59,10 @@ export default function AdminSettingsPage() {
     }
   };
 
-  if (!settings && !error) return <div className="p-8 text-secondary">Loading settings...</div>;
+  if (!settings && !error) return <div className="p-4 sm:p-8 text-secondary">Loading settings...</div>;
 
   return (
-    <div className="p-8 h-full flex flex-col bg-background overflow-y-auto">
+    <div className="p-4 sm:p-8 h-full flex flex-col bg-background overflow-y-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Settings</h1>
         <p className="text-secondary mt-1">Configure your restaurant profile and billing preferences.</p>
