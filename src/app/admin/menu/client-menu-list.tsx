@@ -21,7 +21,6 @@ export default function ClientMenuList({ initialCategories }: { initialCategorie
       });
       
       if (res.ok) {
-        // Optimistic update
         setCategories(prev => 
           prev.map(cat => ({
             ...cat,
@@ -85,7 +84,7 @@ export default function ClientMenuList({ initialCategories }: { initialCategorie
                 category.products.map((product: any) => (
                   <div key={product.id} className={`px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-surface-variant/50 transition-colors ${!product.isAvailable ? 'opacity-60' : ''}`}>
                     <div className="flex items-start sm:items-center gap-3 sm:gap-4">
-                      <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-surface-border">
+                      <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-surface-border shrink-0">
                         {product.imageUrl ? (
                           <Image
                             src={product.imageUrl}
@@ -98,42 +97,43 @@ export default function ClientMenuList({ initialCategories }: { initialCategorie
                           <div className="w-full h-full flex items-center justify-center text-secondary text-xs">No Img</div>
                         )}
                       </div>
-                      <div>
-                        <h3 className="font-bold text-foreground flex items-center gap-2">
+                      <div className="min-w-0">
+                        <h3 className="font-bold text-foreground flex items-center gap-2 flex-wrap">
                           {product.name}
                           {!product.isAvailable && <span className="text-[10px] bg-red-100 text-red-600 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Sold Out</span>}
                         </h3>
-                        <p className="text-secondary text-sm mt-0.5 max-w-md line-clamp-1">
+                        <p className="text-secondary text-sm mt-0.5 line-clamp-1">
                           {product.description || "No description"}
                         </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 w-full sm:w-auto mt-2 sm:mt-0">
-                      <div className="text-left sm:text-right">
-                        <span className="font-bold text-foreground text-lg sm:text-base">{formatRupiah(product.price)}</span>
-                      </div>
-                      <div className="flex items-center gap-2 sm:gap-6 shrink-0">
+                    <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 w-full sm:w-auto">
+                      <span className="font-bold text-foreground text-lg sm:text-base whitespace-nowrap">
+                        {formatRupiah(product.price)}
+                      </span>
+                      <div className="flex items-center gap-2 shrink-0">
                         <button 
-                        onClick={() => toggleAvailability(product.id, product.isAvailable)}
-                        disabled={isUpdating === product.id}
-                        className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md border flex items-center gap-1.5 transition-colors ${
-                          product.isAvailable 
-                            ? 'bg-green-100 text-green-800 border-green-200 hover:bg-green-200' 
-                            : 'bg-surface-variant text-secondary border-surface-border hover:bg-surface-border'
-                        }`}
-                      >
-                        {product.isAvailable ? <><Check className="w-3 h-3" /> Available</> : <><X className="w-3 h-3" /> Unavailable</>}
-                      </button>
-                      <div className="relative group">
-                        <button className="p-2 hover:bg-surface-border rounded-lg transition-colors text-secondary cursor-pointer">
-                          <MoreHorizontal className="w-5 h-5" />
+                          onClick={() => toggleAvailability(product.id, product.isAvailable)}
+                          disabled={isUpdating === product.id}
+                          className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md border flex items-center gap-1.5 transition-colors whitespace-nowrap ${
+                            product.isAvailable 
+                              ? 'bg-green-100 text-green-800 border-green-200 hover:bg-green-200' 
+                              : 'bg-surface-variant text-secondary border-surface-border hover:bg-surface-border'
+                          }`}
+                        >
+                          {product.isAvailable ? <><Check className="w-3 h-3" /> Available</> : <><X className="w-3 h-3" /> Unavailable</>}
                         </button>
-                        <div className="absolute right-0 top-full mt-1 w-32 bg-surface border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10 flex flex-col p-1">
-                          <button onClick={() => alert("Edit Feature Coming Soon")} className="text-left px-3 py-2 text-sm text-foreground hover:bg-surface-variant rounded-md">Edit</button>
-                          <button onClick={() => toggleAvailability(product.id, product.isAvailable)} className="text-left px-3 py-2 text-sm text-foreground hover:bg-surface-variant rounded-md">
-                            Mark {product.isAvailable ? "Unavailable" : "Available"}
+                        <div className="relative group">
+                          <button className="p-2 hover:bg-surface-border rounded-lg transition-colors text-secondary cursor-pointer">
+                            <MoreHorizontal className="w-5 h-5" />
                           </button>
+                          <div className="absolute right-0 top-full mt-1 w-32 bg-surface border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10 flex flex-col p-1">
+                            <button onClick={() => alert("Edit Feature Coming Soon")} className="text-left px-3 py-2 text-sm text-foreground hover:bg-surface-variant rounded-md">Edit</button>
+                            <button onClick={() => toggleAvailability(product.id, product.isAvailable)} className="text-left px-3 py-2 text-sm text-foreground hover:bg-surface-variant rounded-md">
+                              Mark {product.isAvailable ? "Unavailable" : "Available"}
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
