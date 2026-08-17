@@ -39,7 +39,7 @@ async function main() {
     { name: 'Desserts', sortOrder: 5 },
   ];
 
-  const createdCategories = {};
+  const createdCategories: Record<string, any> = {};
   for (const cat of categoriesData) {
     const createdCat = await prisma.category.create({
       data: {
