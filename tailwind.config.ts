@@ -8,11 +8,45 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
       },
+      colors: {
+        background: "#FAFAFA",
+        foreground: "#111827",
+        primary: {
+          DEFAULT: "#0F172A", // Black/Slate for primary brand (Editorial feel)
+          foreground: "#ffffff",
+        },
+        secondary: {
+          DEFAULT: "#6B7280",
+          foreground: "#F3F4F6",
+        },
+        surface: {
+          DEFAULT: "#ffffff",
+          variant: "#F9FAFB",
+          border: "#E5E7EB",
+        },
+        accent: {
+          DEFAULT: "#2563EB", // Blue for actual links/highlights
+          foreground: "#ffffff",
+        },
+        error: {
+          DEFAULT: "#DC2626",
+          foreground: "#ffffff",
+        }
+      },
+      borderRadius: {
+        'sm': '2px',
+        'md': '4px',
+        'lg': '8px',
+        'xl': '12px',
+      },
+      boxShadow: {
+        'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.02)',
+        'md': '0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.02)',
+        'lg': '0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
+      }
     },
   },
   plugins: [],

@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Restaurant {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  logoUrl     String?
+  description       String?
+  taxRate           Float    @default(10.0)
+  serviceChargeRate Float    @default(5.0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  tables     Table[]
+  categories Category[]
+  orders     Order[]
+}
+
+model Table {
+  id           String     @id @default(uuid())
+  restaurantId String
+  tableNumber  String
+  status       TableStatus @default(AVAILABLE)
+  activeSessionId String?
+  needsWaiter  Boolean     @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  orders     Order[]
+
+  @@unique([restaurantId, tableNumber])
+}
+
+enum TableStatus {
+  AVAILABLE
+  OCCUPIED
+  WAITING_PAYMENT
+  RESERVED
+}
+
+model Category {
+  id           String   @id @default(uuid())
+  restaurantId String
+  name         String
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  products   Product[]
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  categoryId  String
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+  isAvailable Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  category Category         @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  variants ProductVariant[]
+  addons   ProductAddon[]
+  orderItems OrderItem[]
+}
+
+model ProductVariant {
+  id        String   @id @default(uuid())
+  productId String
+  name      String
+  options   String   // JSON array of strings
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductAddon {
+  id        String   @id @default(uuid())
+  productId String
+  name      String
+  price     Float
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id               String   @id @default(uuid())
+  restaurantId     String
+  tableId          String
+  orderNumber      String   @unique
+  customerSessionId String
+  subtotal         Float
+  tax              Float
+  serviceCharge    Float
+  total            Float
+  status           OrderStatus @default(NEW)
+  paymentStatus    PaymentStatus @default(PENDING)
+  paymentMethod    String?
+  notes            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  restaurant Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  table      Table       @relation(fields: [tableId], references: [id])
+  items      OrderItem[]
+}
+
+enum OrderStatus {
+  NEW
+  CONFIRMED
+  PREPARING
+  READY
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int
+  unitPrice Float
+  modifiers String?  // JSON string containing selected variants and addons
+  notes     String?
+  createdAt DateTime @default(now())
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+}
