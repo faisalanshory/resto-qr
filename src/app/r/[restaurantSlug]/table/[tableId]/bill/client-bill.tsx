@@ -103,6 +103,17 @@ export default function ClientBill({
           <h2 className="text-2xl font-bold tracking-tight text-foreground">Order History</h2>
         </div>
 
+        <div className="bg-surface-variant p-4 rounded-xl flex justify-between items-center border border-surface-border">
+          <div>
+            <p className="text-xs text-secondary font-semibold uppercase tracking-wider mb-1">Session Total</p>
+            <p className="text-lg font-bold text-foreground">{formatRupiah(orders.filter((o: any) => o.status !== 'CANCELLED').reduce((acc: number, o: any) => acc + o.total, 0))}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-xs text-amber-600 font-semibold uppercase tracking-wider mb-1">Unpaid</p>
+            <p className="text-lg font-bold text-amber-600">{formatRupiah(totalUnpaid)}</p>
+          </div>
+        </div>
+
         <div className="space-y-6">
           {orders.map((order: any) => (
             <div key={order.id} className={`border-t border-surface-border pt-6 ${order.status === 'CANCELLED' ? 'opacity-50 grayscale' : ''}`}>
@@ -123,7 +134,7 @@ export default function ClientBill({
                   order.status === 'CANCELLED' ? 'bg-red-100 text-red-800 border-red-200' :
                   'bg-surface-variant text-secondary border-surface-border'
                 }`}>
-                  {order.status}
+                  {order.status === 'COMPLETED' ? 'SERVED' : order.status}
                 </span>
               </div>
 
@@ -146,7 +157,8 @@ export default function ClientBill({
                 <span className="text-sm font-medium text-foreground">
                   {order.status === "NEW" ? "Received by kitchen" : 
                    order.status === "PREPARING" ? "Being prepared" : 
-                   order.status === "CANCELLED" ? "Order cancelled" : "Ready to serve"}
+                   order.status === "CANCELLED" ? "Order cancelled" : 
+                   order.status === "COMPLETED" ? "Served to your table" : "Ready to serve"}
                 </span>
               </div>
             </div>

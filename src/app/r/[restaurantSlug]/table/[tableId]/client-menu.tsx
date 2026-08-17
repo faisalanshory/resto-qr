@@ -57,7 +57,10 @@ export default function ClientMenu({ categories }: ClientMenuProps) {
         {categories.map((cat) => (
           <button
             key={cat.id}
-            onClick={() => setActiveCategory(cat.id)}
+            onClick={() => {
+              setActiveCategory(cat.id);
+              document.getElementById(`category-${cat.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
             className={cn(
               "px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors border",
               activeCategory === cat.id
@@ -78,7 +81,7 @@ export default function ClientMenu({ categories }: ClientMenuProps) {
           </div>
         ) : (
           filteredCategories.map((cat) => (
-            <div key={cat.id} className="space-y-4">
+            <div key={cat.id} id={`category-${cat.id}`} className="space-y-4 pt-4">
               <h2 className="text-lg font-bold tracking-tight text-foreground mb-3">
                 {cat.name}
               </h2>
