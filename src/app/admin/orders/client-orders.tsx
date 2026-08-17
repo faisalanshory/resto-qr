@@ -122,23 +122,23 @@ export default function ClientOrders() {
                 {/* Session Header */}
                 <div 
                   onClick={() => toggleSession(session.sessionId)}
-                  className="px-6 py-4 bg-surface-variant/50 hover:bg-surface-variant flex items-center justify-between cursor-pointer border-b border-surface-border"
+                  className="px-4 md:px-6 py-4 bg-surface-variant/50 hover:bg-surface-variant flex items-center justify-between cursor-pointer border-b border-surface-border flex-wrap gap-4"
                 >
-                  <div className="flex items-center gap-6">
-                    <div className="w-12 h-12 bg-background border border-surface-border rounded-xl flex items-center justify-center font-bold text-foreground shadow-sm">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 shrink-0 bg-background border border-surface-border rounded-xl flex items-center justify-center font-bold text-foreground shadow-sm">
                       T{session.tableNumber}
                     </div>
-                    <div>
-                      <h2 className="font-bold text-foreground text-lg">Table {session.tableNumber}</h2>
-                      <div className="flex items-center gap-2 mt-0.5 text-xs text-secondary font-medium">
-                        <span className="uppercase tracking-wider">Session</span>
-                        <span>•</span>
-                        <span className="font-mono">{session.sessionId.split('_')[1] || session.sessionId}</span>
+                    <div className="min-w-0">
+                      <h2 className="font-bold text-foreground text-base md:text-lg truncate">Table {session.tableNumber}</h2>
+                      <div className="flex items-center gap-2 mt-0.5 text-[10px] md:text-xs text-secondary font-medium overflow-hidden">
+                        <span className="uppercase tracking-wider shrink-0">Session</span>
+                        <span className="shrink-0">•</span>
+                        <span className="font-mono truncate">{session.sessionId.split('_')[1] || session.sessionId}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-8">
+                  <div className="flex items-center gap-3 md:gap-8 ml-auto">
                     <div className="text-right hidden sm:block">
                       <p className="text-xs text-secondary uppercase font-semibold tracking-wider">Session Total</p>
                       <p className="font-bold text-foreground text-lg">{formatRupiah(session.total)}</p>
@@ -161,14 +161,14 @@ export default function ClientOrders() {
                 {isExpanded && (
                   <div className="divide-y divide-surface-border bg-background">
                     {session.orders.map((order: any) => (
-                      <div key={order.id} className={`px-6 py-4 flex justify-between items-center hover:bg-surface-variant/30 transition-colors ${order.status === 'CANCELLED' ? 'opacity-50 grayscale' : ''}`}>
-                        <div className="flex flex-col gap-1">
-                          <span className={`font-bold text-sm ${order.status === 'CANCELLED' ? 'line-through text-secondary' : 'text-foreground'}`}>{order.orderNumber}</span>
+                      <div key={order.id} className={`px-4 md:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-variant/30 transition-colors ${order.status === 'CANCELLED' ? 'opacity-50 grayscale' : ''}`}>
+                        <div className="flex flex-col gap-1 min-w-0">
+                          <span className={`font-bold text-sm truncate ${order.status === 'CANCELLED' ? 'line-through text-secondary' : 'text-foreground'}`}>{order.orderNumber}</span>
                           <span className="text-xs text-secondary">
                             {new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </span>
                         </div>
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center justify-between sm:justify-end gap-4 md:gap-6 shrink-0">
                           <span className={`font-medium text-sm ${order.status === 'CANCELLED' ? 'line-through text-secondary' : 'text-foreground'}`}>{formatRupiah(order.total)}</span>
                           <span className={cn(
                             "px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded border",

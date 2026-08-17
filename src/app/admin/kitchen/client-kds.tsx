@@ -45,10 +45,10 @@ export default function ClientKDS() {
 
   return (
     <div className="p-6 h-screen flex flex-col bg-background">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6 shrink-0">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground">Kitchen Display System</h1>
-          <p className="text-secondary mt-1">Live order tracking</p>
+          <p className="text-secondary mt-1">Live order tracking (Swipe right to view more)</p>
         </div>
         <div className="flex items-center gap-3">
           <span className="flex h-3 w-3">
@@ -59,10 +59,10 @@ export default function ClientKDS() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-x-auto pb-4 no-scrollbar">
-        <div className="flex gap-6 h-full min-w-max">
+      <div className="flex-1 overflow-x-auto pb-4 snap-x snap-mandatory">
+        <div className="flex gap-4 sm:gap-6 h-full min-w-max pb-2">
           {statuses.map(status => (
-            <div key={status.id} className="w-80 flex flex-col bg-surface border border-surface-border rounded-lg overflow-hidden flex-shrink-0">
+            <div key={status.id} className="w-[85vw] max-w-[320px] flex flex-col bg-surface border border-surface-border rounded-lg overflow-hidden shrink-0 snap-start">
               <div className="p-4 border-b border-surface-border bg-surface-variant flex justify-between items-center">
                 <h2 className="font-bold text-sm tracking-wide text-foreground">{status.label}</h2>
                 <span className="bg-background text-foreground text-xs font-bold px-2 py-1 rounded-md border border-surface-border">
