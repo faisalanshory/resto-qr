@@ -38,7 +38,7 @@ export function MobileNav() {
           <div className="relative flex flex-col w-64 max-w-[80vw] h-full bg-surface border-r border-surface-border shadow-xl animate-in slide-in-from-left duration-200">
             <div className="flex items-center justify-between p-6 border-b border-surface-border/50">
               <div>
-                <h1 className="text-xl font-bold tracking-tight text-primary">Kopi Senja</h1>
+                <h1 className="text-xl font-bold tracking-tight text-primary">AKC Library Cafe</h1>
                 <p className="text-xs text-secondary mt-1">Admin Panel</p>
               </div>
               <button onClick={() => setIsOpen(false)} className="p-2 -mr-2 text-secondary hover:text-foreground">
