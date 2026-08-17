@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { UtensilsCrossed, Receipt, LayoutDashboard, Settings } from "lucide-react";
+import { MobileNav } from "./mobile-nav";
 
 export default function AdminLayout({
   children,
@@ -7,9 +8,15 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen bg-background text-surface-on">
-      {/* Navigation Rail / Sidebar */}
-      <aside className="w-64 bg-surface border-r border-surface-variant flex flex-col">
+    <div className="flex flex-col md:flex-row h-screen bg-background text-surface-on overflow-hidden">
+      {/* Mobile Header */}
+      <header className="md:hidden flex items-center justify-between p-4 border-b border-surface-border bg-surface shrink-0 z-10">
+        <h1 className="text-lg font-bold tracking-tight text-primary">Kopi Senja Admin</h1>
+        <MobileNav />
+      </header>
+
+      {/* Desktop Navigation Rail / Sidebar */}
+      <aside className="hidden md:flex w-64 bg-surface border-r border-surface-variant flex-col shrink-0">
         <div className="p-6 border-b border-surface-variant/50">
           <h1 className="text-xl font-bold tracking-tight text-primary">Kopi Senja Admin</h1>
           <p className="text-sm text-secondary mt-1">Management Portal</p>
@@ -59,7 +66,7 @@ export default function AdminLayout({
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-hidden bg-background">
+      <main className="flex-1 min-w-0 overflow-y-auto">
         {children}
       </main>
     </div>
