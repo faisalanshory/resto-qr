@@ -71,7 +71,7 @@ export default function ClientKDS() {
               </div>
               
               <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background">
-                {(ordersByStatus[status.id] || []).map(order => (
+                {(ordersByStatus[status.id] || []).map((order: any) => (
                   <div key={order.id} className="bg-surface border border-surface-border rounded-md p-4 shadow-sm flex flex-col">
                     <div className="flex justify-between items-start mb-3">
                       <div>
