@@ -16,16 +16,20 @@ export default function AdminTablesPage() {
   const [updating, setUpdating] = useState<string | null>(null);
 
   const handleClearTable = async (tableId: string, tableNumber: string) => {
-    if (!confirm(`Are you sure you want to CLOSE Table ${tableNumber}?\nThis will clear the customer's device and end their session.`)) {
+    if (!confirm(`Are you sure you want to CLOSE Table ${tableNumber}?\nThis will clear the customer's session.`)) {
       return;
     }
 
+    setUpdating(tableId);
     try {
-      await fetch(`/api/admin/tables/${tableId}/clear`, { method: "POST" });
-      mutate();
+      const res = await fetch(`/api/admin/tables/${tableId}/clear`, { method: "POST" });
+      if (!res.ok) throw new Error("Failed to clear");
+      await mutate();
     } catch (e) {
       console.error(e);
-      alert("Failed to clear table");
+      alert("Failed to clear table. Please try again.");
+    } finally {
+      setUpdating(null);
     }
   };
 
@@ -136,7 +140,7 @@ export default function AdminTablesPage() {
                       <AlertCircle className="w-5 h-5" />
                     </button>
                   )}
-                  <Link href={`/r/kopi-senja/table/${table.tableNumber}`} target="_blank">
+                  <Link href={`/r/akc-library-cafe/table/${table.tableNumber}`} target="_blank">
                     <button title="View QR / Customer Page" className="p-2 bg-surface-variant text-secondary hover:text-foreground rounded-lg transition-colors border border-surface-border">
                       <QrCode className="w-5 h-5" />
                     </button>
@@ -236,10 +240,11 @@ export default function AdminTablesPage() {
                   <div className="mt-auto pt-4">
                     <button
                       onClick={() => handleClearTable(table.id, table.tableNumber)}
-                      className="w-full py-2.5 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-sm font-bold transition-colors border border-red-200 flex items-center justify-center gap-2"
+                      disabled={updating === table.id}
+                      className="w-full py-2.5 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-sm font-bold transition-colors border border-red-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <RefreshCw className="w-4 h-4" />
-                      Close Table Session
+                      <RefreshCw className={`w-4 h-4 ${updating === table.id ? 'animate-spin' : ''}`} />
+                      {updating === table.id ? 'Closing...' : 'Close Table Session'}
                     </button>
                   </div>
                 </div>
