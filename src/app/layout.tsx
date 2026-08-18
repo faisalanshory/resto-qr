@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Minimalist QR Restaurant Ordering",
 };
 
+import NextTopLoader from 'nextjs-toploader';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NextTopLoader color="#ea580c" showSpinner={false} />
+        {children}
+      </body>
     </html>
   );
 }
