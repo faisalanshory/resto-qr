@@ -58,7 +58,7 @@ export default function ProductDetailSheet({
       />
       
       {/* Bottom Sheet */}
-      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-background border-t border-surface-border rounded-t-2xl z-50 flex flex-col max-h-[90vh] shadow-2xl animate-in slide-in-from-bottom-full duration-300">
+      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-background border-t border-surface-border rounded-t-2xl z-50 flex flex-col max-h-[90dvh] shadow-2xl animate-in slide-in-from-bottom-full duration-300">
         
         {/* Header Image & Close */}
         <div className="relative h-64 w-full shrink-0 bg-surface-variant rounded-t-2xl overflow-hidden">
@@ -158,7 +158,7 @@ export default function ProductDetailSheet({
         </div>
 
         {/* Footer Actions */}
-        <div className="p-4 bg-background border-t border-surface-border space-y-4">
+        <div className="p-4 pb-8 sm:pb-4 bg-background border-t border-surface-border space-y-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 bg-surface border border-surface-border rounded-lg p-1">
               <button 

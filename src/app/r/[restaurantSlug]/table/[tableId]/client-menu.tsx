@@ -136,7 +136,7 @@ export default function ClientMenu({ categories }: ClientMenuProps) {
 
       {/* Floating Action Buttons */}
       {mounted && (
-        <div className="fixed bottom-6 right-6 z-30 flex flex-col gap-3 items-end">
+        <div className="absolute bottom-6 right-6 z-30 flex flex-col gap-3 items-end">
           {sessionId && (
             <Link href={`/r/${params.restaurantSlug}/table/${params.tableId}/bill`}>
               <div className="bg-surface text-foreground rounded-full shadow-md p-3.5 flex items-center justify-center hover:scale-105 active:scale-95 transition-all border border-surface-border">
