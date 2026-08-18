@@ -19,7 +19,7 @@ export default function LandingPage() {
 
   const handleCustomerScan = (tableNumber: string) => {
     // Simulate scanning a QR code for a specific table
-    router.push(`/r/kopi-senja/table/${tableNumber}`);
+    router.push(`/r/akc-library-cafe/table/${tableNumber}`);
   };
 
   return (
@@ -43,22 +43,22 @@ export default function LandingPage() {
           <div className="space-y-3 mt-auto">
             <h3 className="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Select a Table to &quot;Scan&quot;</h3>
             <button 
-              onClick={() => handleCustomerScan("01")}
+              onClick={() => handleCustomerScan("1")}
               className="w-full flex items-center justify-between p-4 bg-background border border-surface-border rounded-xl hover:bg-surface-variant hover:border-primary/50 transition-all group"
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-xs font-bold">01</div>
-                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">Table 01</span>
+                <div className="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-xs font-bold">1</div>
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">Table 1</span>
               </div>
               <ChevronRight className="w-5 h-5 text-secondary group-hover:text-primary transition-colors" />
             </button>
             <button 
-              onClick={() => handleCustomerScan("02")}
+              onClick={() => handleCustomerScan("2")}
               className="w-full flex items-center justify-between p-4 bg-background border border-surface-border rounded-xl hover:bg-surface-variant hover:border-primary/50 transition-all group"
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-xs font-bold">02</div>
-                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">Table 02</span>
+                <div className="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-xs font-bold">2</div>
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">Table 2</span>
               </div>
               <ChevronRight className="w-5 h-5 text-secondary group-hover:text-primary transition-colors" />
             </button>
@@ -84,7 +84,7 @@ export default function LandingPage() {
               <label className="text-xs font-bold uppercase tracking-wider text-secondary">Email Address</label>
               <input 
                 type="email" 
-                defaultValue="admin@kopisenja.com" 
+                defaultValue="admin@akc-library-cafe.com" 
                 readOnly
                 className="w-full bg-background border border-surface-border px-4 py-3 rounded-xl text-sm font-medium text-foreground outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all opacity-70"
               />
